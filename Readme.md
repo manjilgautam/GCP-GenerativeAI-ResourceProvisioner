@@ -52,3 +52,5 @@ terraform apply
 ````
 
 4. After the deployment is complete, you can access the user-managed notebook instance and start using the generative AI examples.
+
+ ![](./generative-ai-gcp-module/images/usermanaged_notebook.png)
