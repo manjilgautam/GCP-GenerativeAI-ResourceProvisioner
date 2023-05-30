@@ -1,5 +1,5 @@
 module "existing_project" {
-  source = "./modules/data_science"
+  source = "./generative-ai-gcp-module"
 
   billing_account_id = "<BILLING_ID>"
   organization_id    = "<ORGANIZATION_ID>"
