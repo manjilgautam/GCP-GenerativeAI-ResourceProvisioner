@@ -1,4 +1,4 @@
-# User-Managed Notebook Instance Terraform Module
+# GenAI Exmaples resource provisioner Module
 
 This Terraform module creates a user-managed notebook instance on Google Cloud Platform (GCP) and clones the [generative-ai](https://github.com/GoogleCloudPlatform/generative-ai) repository.
 
@@ -17,7 +17,8 @@ This Terraform module creates a user-managed notebook instance on Google Cloud P
    ```shell
    git clone https://github.com/manjilgautam/GCP-GenerativeAI-ResourceProvisioner.git
  ```
-2. Edit the main.tf file :
+2. Edit the main.tf file.
+
 ````hcl
 module "existing_project" {
   source = "./generative-ai-gcp-module"
