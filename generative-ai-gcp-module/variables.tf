@@ -18,69 +18,6 @@ variable "billing_account_id" {
   description = "Billing Account associated to the GCP Resources.  {{UIMeta group=0 order=3 updatesafe }}"
   type        = string
 }
-
-variable "billing_budget_alert_spend_basis" {
-  description = "The type of basis used to determine if spend has passed the threshold. {{UIMeta group=0 order=6 updatesafe }}"
-  type        = string
-  default     = "CURRENT_SPEND"
-}
-
-variable "billing_budget_alert_spent_percents" {
-  description = "A list of percentages of the budget to alert on when threshold is exceeded. {{UIMeta group=0 order=7 updatesafe }}"
-  type        = list(number)
-  default     = [0.5, 0.7, 1]
-}
-
-variable "billing_budget_amount" {
-  description = "The amount to use as the budget in USD. {{UIMeta group=0 order=8 updatesafe }}"
-  type        = number
-  default     = 500
-}
-
-variable "billing_budget_amount_currency_code" {
-  description = "The 3-letter currency code defined in ISO 4217 (https://cloud.google.com/billing/docs/resources/currency#list_of_countries_and_regions). It must be the currency associated with the billing account. {{UIMeta group=0 order=9 updatesafe }}"
-  type        = string
-  default     = "USD"
-}
-
-variable "billing_budget_credit_types_treatment" {
-  description = "Specifies how credits should be treated when determining spend for threshold calculations. {{UIMeta group=0 order=10 updatesafe }}"
-  type        = string
-  default     = "INCLUDE_ALL_CREDITS"
-}
-
-variable "billing_budget_labels" {
-  description = "A single label and value pair specifying that usage from only this set of labeled resources should be included in the budget. {{UIMeta group=0 order=11 updatesafe }}"
-  type        = map(string)
-  default     = {}
-  validation {
-    condition     = length(var.billing_budget_labels) <= 1
-    error_message = "Only 0 or 1 labels may be supplied for the budget filter."
-  }
-}
-
-variable "billing_budget_services" {
-  description = "A list of services ids to be included in the budget. If omitted, all services will be included in the budget. Service ids can be found at https://cloud.google.com/skus/. {{UIMeta group=0 order=12 updatesafe }}"
-  type        = list(string)
-  default     = null
-}
-
-variable "billing_budget_notification_email_addresses" {
-  description = "A list of email addresses which will be recieving billing budget notification alerts. A maximum of 4 channels are allowed as the first element of `trusted_users` is automatically added as one of the channel. {{UIMeta group=0 order=13 updatesafe }}"
-  type        = set(string)
-  default     = []
-  validation {
-    condition     = length(var.billing_budget_notification_email_addresses) <= 4
-    error_message = "Maximum of 4 email addresses are allowed for the budget monitoring channel."
-  }
-}
-
-variable "billing_budget_pubsub_topic" {
-  description = "If true, creates a Cloud Pub/Sub topic where budget related messages will be published. Default is false. {{UIMeta group=0 order=14 updatesafe }}"
-  type        = bool
-  default     = false
-}
-
 variable "boot_disk_size_gb" {
   description = "The size of the boot disk in GB attached to this instance.  {{UIMeta group=3 order=8 options=50,100,500 }}"
   type        = number
@@ -93,11 +30,11 @@ variable "boot_disk_type" {
   default     = "PD_SSD"
 }
 
-variable "create_budget" {
-  description = "If the budget should be created. {{UIMeta group=0 order=5 updatesafe }}"
-  type        = bool
-  default     = false
-}
+# variable "create_budget" {
+#   description = "If the budget should be created. {{UIMeta group=0 order=5 updatesafe }}"
+#   type        = bool
+#   default     = false
+# }
 
 variable "create_container_image" {
   description = "If the notebook needs to have image type as Container set this variable to true, set it to false when using dafault image type i.e. VM. {{UIMeta group=3 order=3 }}"
@@ -105,11 +42,11 @@ variable "create_container_image" {
   default     = false
 }
 
-variable "create_network" {
-  description = "If the module has to be deployed in an existing network, set this variable to false. {{UIMeta group=2 order=1 }}"
-  type        = bool
-  default     = true
-}
+# variable "create_network" {
+#   description = "If the module has to be deployed in an existing network, set this variable to false. {{UIMeta group=2 order=1 }}"
+#   type        = bool
+#   default     = true
+# }
 
 variable "create_project" {
   description = "Set to true if the module has to create a project.  If you want to deploy in an existing project, set this variable to false. {{UIMeta group=1 order=1 }}"

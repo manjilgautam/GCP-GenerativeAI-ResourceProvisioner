@@ -14,17 +14,6 @@
  * limitations under the License.
  */
 
-output "billing_budget_budget_id" {
-  sensitive   = true
-  description = "Resource name of the budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`"
-  value       = var.create_budget ? google_billing_budget.budget[0].name : ""
-}
-
-output "deployment_id" {
-  description = "RADLab Module Deployment ID"
-  value       = local.random_id
-}
-
 output "notebooks_googlemanaged_names" {
   description = "Google Managed Notebook Instance Names"
   value       = join(", ", google_notebooks_runtime.ai_notebook_googlemanaged[*].name)
@@ -49,13 +38,7 @@ output "notebooks_usermanaged_urls" {
   ]
 }
 
-output "project_id" {
-  description = "Analytics Project ID"
-  value       = local.project.project_id
-}
-
 output "user_scripts_bucket_uri" {
   description = "User Script Bucket URI"
   value       = google_storage_bucket.user_scripts_bucket.self_link
 }
-
