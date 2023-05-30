@@ -25,7 +25,7 @@ locals {
   network = (
   var.create_network
   ? try(module.vpc_ai_notebook.0.network.network, null)
-  : try(data.google_complscdute_network.default.0, null)
+  : try(data.google_compute_network.default.0, null)
   )
 
   subnet = (
