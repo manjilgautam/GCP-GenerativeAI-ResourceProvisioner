@@ -14,9 +14,9 @@ This Terraform module creates a user-managed notebook instance on Google Cloud P
 
 1. Clone the module repository [GCP-GenerativeAI-ResourceProvisioner](https://github.com/manjilgautam/GCP-GenerativeAI-ResourceProvisioner.git) to your Cloud Shell Editor using the following command:
 
-   ```shell
+````hcl
    git clone https://github.com/manjilgautam/GCP-GenerativeAI-ResourceProvisioner.git
- ```
+````
 2. Edit the main.tf file.
 
 ````hcl
