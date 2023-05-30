@@ -40,7 +40,8 @@ locals {
     "roles/bigquery.user",
     "roles/storage.admin",
     "roles/iam.serviceAccountUser",
-    "roles/serviceusage.serviceUsageConsumer"
+    "roles/serviceusage.serviceUsageConsumer",
+    "roles/aiplatform.admin"
   ]
 
   default_apis = [
