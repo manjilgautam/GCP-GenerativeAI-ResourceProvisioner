@@ -16,19 +16,22 @@
 
 locals {
   random_id = var.deployment_id != null ? var.deployment_id : random_id.default.0.hex
-  project   = try(data.google_project.existing_project.0, null)
+  project   = (var.create_project
+  ? try(module.project_radlab_ds_analytics.0, null)
+  : try(data.google_project.existing_project.0, null)
+  )
   region = join("-", [split("-", var.zone)[0], split("-", var.zone)[1]])
 
   network = (
-    var.create_network
-    ? try(module.vpc_ai_notebook.0.network.network, null)
-    : try(data.google_compute_network.default.0, null)
+  var.create_network
+  ? try(module.vpc_ai_notebook.0.network.network, null)
+  : try(data.google_compute_network.default.0, null)
   )
 
   subnet = (
-    var.create_network
-    ? try(module.vpc_ai_notebook.0.subnets["${local.region}/${var.subnet_name}"], null)
-    : try(data.google_compute_subnetwork.default.0, null)
+  var.create_network
+  ? try(module.vpc_ai_notebook.0.subnets["${local.region}/${var.subnet_name}"], null)
+  : try(data.google_compute_subnetwork.default.0, null)
   )
 
   notebook_sa_project_roles = [
@@ -49,7 +52,6 @@ locals {
   project_services = var.enable_services ? (var.billing_budget_pubsub_topic ? distinct(concat(local.default_apis,["pubsub.googleapis.com"])) : local.default_apis) : []
 }
 
-
 resource "random_id" "default" {
   count       = var.deployment_id == null ? 1 : 0
   byte_length = 2
@@ -62,6 +64,32 @@ resource "random_id" "default" {
 data "google_project" "existing_project" {
   count      = var.create_project ? 0 : 1
   project_id = var.project_id_prefix
+}
+
+module "project_radlab_ds_analytics" {
+  count   = var.create_project ? 1 : 0
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 13.0"
+
+  name              = format("%s-%s", var.project_id_prefix, local.random_id)
+  random_project_id = false
+  folder_id         = var.folder_id
+  billing_account   = var.billing_account_id
+  org_id            = var.organization_id
+
+  activate_apis = []
+}
+
+resource "google_project_service" "enabled_services" {
+  for_each                   = toset(local.project_services)
+  project                    = local.project.project_id
+  service                    = each.value
+  disable_dependent_services = true
+  disable_on_destroy         = true
+
+  depends_on = [
+    module.project_radlab_ds_analytics
+  ]
 }
 
 data "google_compute_network" "default" {
@@ -115,6 +143,7 @@ module "vpc_ai_notebook" {
   ]
 
   depends_on = [
+    module.project_radlab_ds_analytics,
     google_project_service.enabled_services,
     time_sleep.wait_120_seconds
   ]
