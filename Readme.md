@@ -40,7 +40,11 @@ module "existing_project" {
 3. Deploy the module using Terraform:
 ````hcl
 cd GCP-GenerativeAI-ResourceProvisioner
+````
+````hcl
 terraform init
+````
+````hcl
 terraform apply
 ````
 
