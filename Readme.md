@@ -17,7 +17,12 @@ This Terraform module creates a user-managed notebook instance on Google Cloud P
 ````hcl
    git clone https://github.com/manjilgautam/GCP-GenerativeAI-ResourceProvisioner.git
 ````
-2. Edit the main.tf file.
+
+2. Edit the main.tf file. 
+
+````hcl
+cd GCP-GenerativeAI-ResourceProvisioner
+````
 
 ````hcl
 module "existing_project" {
@@ -38,9 +43,7 @@ module "existing_project" {
 ````
 
 3. Deploy the module using Terraform:
-````hcl
-cd GCP-GenerativeAI-ResourceProvisioner
-````
+
 ````hcl
 terraform init
 ````
