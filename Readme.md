@@ -38,9 +38,10 @@ module "existing_project" {
 ````
 
 3. Deploy the module using Terraform:
-
+````hcl
 cd GCP-GenerativeAI-ResourceProvisioner
 terraform init
 terraform apply
+````
 
 4. After the deployment is complete, you can access the user-managed notebook instance and start using the generative AI examples.
