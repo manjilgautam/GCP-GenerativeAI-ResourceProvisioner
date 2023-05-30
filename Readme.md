@@ -1,8 +1,10 @@
-# GenAI Example resource provisioner Module
-
-This Terraform module creates a user-managed notebook instance on Google Cloud Platform (GCP) for [generative-ai](https://github.com/GoogleCloudPlatform/generative-ai) examples.
+# Generative AI Resource Provisioning Module
 
 ## Module Overview
+This Terraform module creates a user-managed notebook instance on Google Cloud Platform (GCP) for running generative AI examples. It clones the following repository:
+1. [GoogleCloudPlatform/generative-ai](https://github.com/GoogleCloudPlatform/generative-ai) - This repository contains notebooks and content that demonstrate how to use, develop, and manage generative AI workflows using Generative AI, powered by Vertex AI on Google Cloud.
+2. WIP
+
 
 ## GCP Products/Services
 
