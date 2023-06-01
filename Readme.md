@@ -53,5 +53,8 @@ terraform init
 terraform apply
 ````
 
-4. After the deployment is complete, you can access the user-managed notebook instance and start using the generative AI examples. 
-![](./images/Usermanage Notebook instance SS.png)
+4. After the deployment is complete, you can access the user-managed notebook instance in Vertex AI Workbench.
+ ![](./generative-ai-gcp-module/images/usermanaged_notebook.png)
+ 
+5. Clicking on the Open Jupyter takes you inside the instance.
+ ![](./generative-ai-gcp-module/images/jupyterinstance.png)
